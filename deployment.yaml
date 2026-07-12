@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: register-app
-        image: itsamh2002/register-app-pipeline:1.0.0-7
+        image: itsamh2002/register-app-pipeline:amh
         resources:
           limits:
             memory: "256Mi"
