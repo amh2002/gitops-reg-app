@@ -1,7 +1,7 @@
 pipeline {
     agent { label "Jenkins-Agent" }
     environment {
-              APP_NAME = "register-app-pipeline"
+        APP_NAME = "register-app-pipeline"
     }
 
     stages {
@@ -12,9 +12,9 @@ pipeline {
         }
 
         stage("Checkout from SCM") {
-               steps {
-                   git branch: 'main', credentialsId: 'github', url: 'https://github.com/amh2002/gitops-reg-app.git'
-               }
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/amh2002/gitops-reg-app.git'
+            }
         }
 
         stage("Update the Deployment Tags") {
@@ -37,13 +37,10 @@ pipeline {
                 """
 
                 withCredentials([string(credentialsId: 'github-token', variable: 'TOKEN')]) {
-                  sh "git push https://${TOKEN}@github.com/amh2002/gitops-reg-app main"
-
-                  
-}
+                    sh "git push https://${TOKEN}@github.com/amh2002/gitops-reg-app main"
                 }
             }
         }
-      
-    }
-}
+        
+    } // <--- THIS IS THE MISSING BRACKET THAT CLOSES 'stages'
+} // <--- This closes 'pipeline'
